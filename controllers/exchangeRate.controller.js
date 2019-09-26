@@ -38,4 +38,29 @@ ExchangeRateController.getLatest = (req, res) => {
   })
 }
 
+ExchangeRateController.getSymbols = (req, res) => {
+  Cryptocurrency.findAll({ attributes: ['id', 'symbol'] })
+    .then(data => {
+      return res.send(data)
+    })
+    .catch(error => {
+      console.log(error)
+      return res.sendStatus(500)
+    })
+}
+
+ExchangeRateController.add = (req, res) => {
+  const {
+    body: { value, userId, cryptocurrencyId },
+  } = req
+  ExchangeRate.create({ last: +value, cryptocurrencyId, userId, timestamp: new Date().toISOString() })
+    .then(rate => {
+      return res.status(201).send(rate.dataValues)
+    })
+    .catch(error => {
+      console.log(error)
+      return res.sendStatus(500)
+    })
+}
+
 module.exports = ExchangeRateController

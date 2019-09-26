@@ -7,5 +7,6 @@ module.exports = (sequelize, type) => {
     },
     timestamp: type.DATE,
     last: type.FLOAT,
+    userId: type.STRING,
   })
 }
