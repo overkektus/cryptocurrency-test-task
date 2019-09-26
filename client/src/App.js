@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
-import axios from 'axios'
 import { Layout, Menu } from 'antd'
 import Home from './pages/Home'
 import Add from './pages/Add'
@@ -9,21 +8,16 @@ const { Header, Content, Footer } = Layout
 const { Item: MenuItem } = Menu
 
 class App extends Component {
-  componentDidMount() {
-    axios.get('/api/latest').then(res => {
-      console.log(res)
-    })
-  }
   render() {
     return (
       <Layout className="layout">
         <Header>
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }}>
-            <MenuItem key="1">
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }}>
+            <MenuItem key="home">
               <Link to="/">Home</Link>
             </MenuItem>
-            <MenuItem key="2">
+            <MenuItem key="add">
               <Link to="/add">Add</Link>
             </MenuItem>
           </Menu>
