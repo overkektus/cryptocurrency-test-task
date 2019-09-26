@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Select, Button } from 'antd'
+import { Form, Input, Select, Button, notification } from 'antd'
 import axios from 'axios'
 import uuidv4 from 'uuid/v4'
 import Cookies from 'universal-cookie'
@@ -29,7 +29,9 @@ class Add extends Component {
       axios
         .post('/api/add', { ...value, userId: cookies.get('userId') })
         .then(res => {
-          console.log(res)
+          notification['success']({
+            message: 'New rate successfully added',
+          })
         })
         .catch(error => {
           console.log(error)
